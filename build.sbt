@@ -61,7 +61,7 @@ lazy val settings =
     fork          in (Test, test) := true
   ) ++ Seq(
     libraryDependencies ++= Seq(
-      "com.esotericsoftware.kryo" %  "kryo"            % "4.02",
+      "com.esotericsoftware.kryo" %  "kryo"            % "4.0.2",
       "commons-logging"           %  "commons-logging" % "1.2",
       "org.scalatest"             %% "scalatest"       % "3.0.0" % Test
     ),
