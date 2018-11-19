@@ -35,7 +35,7 @@ lazy val xgboost4j =
     .in(file("xgboost/jvm-packages/xgboost4j"))
     .settings(settings ++ toPublish)
     .settings(
-      crossScalaVersions += "2.12.6"
+      crossScalaVersions += "2.12.7"
     )
     .settings(
       libraryDependencies ++= Seq(
@@ -92,13 +92,13 @@ lazy val `xgboost4j-spark` =
 lazy val settings =
   Seq(
     akkaVersion                      := (if (isScala211.value) "2.3.11" else "2.4.20"),
-    crossScalaVersions               := Seq("2.11.8"),
+    crossScalaVersions               := Seq("2.11.12"),
     envVars                         ++= Map("LC_ALL" -> "", "LC_NUMERIC" -> "C"),
     isScala211                       := (scalaBinaryVersion.value == "2.11"),
     javacOptions                    ++= Seq("-source", "1.7", "-target", "1.7"),
     licenses                         := Seq("Apache-2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0.txt")),
     organization                     := "com.github.hirofumi",
-    scalaVersion                     := "2.11.8",
+    scalaVersion                     := "2.11.12",
     scalacOptions                   ++= Seq("-deprecation", "-encoding", "UTF-8", "-feature"),
     scalacOptions                    += (if (isScala211.value) "-target:jvm-1.7" else "-target:jvm-1.8"),
     scalacOptions in (Compile, doc) ++= (if (isScala211.value) Nil else Seq("-no-java-comments")), // https://github.com/scala/scala-dev/issues/249#issuecomment-255863118
