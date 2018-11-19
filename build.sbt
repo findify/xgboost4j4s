@@ -6,10 +6,7 @@ lazy val `xgboost-jvm` =
   project
     .in(file("."))
     .aggregate(
-      xgboost4j,
-      `xgboost4j-example`,
-      `xgboost4j-flink`,
-      `xgboost4j-spark`
+      xgboost4j
     )
     .settings(settings ++ notToPublish)
     .settings(
@@ -42,50 +39,6 @@ lazy val xgboost4j =
         "com.typesafe.akka" %% "akka-actor"   % akkaVersion.value,
         "com.typesafe.akka" %% "akka-testkit" % akkaVersion.value % Test,
         "junit"             %  "junit"        % "4.11"            % Test
-      )
-    )
-
-lazy val `xgboost4j-example` =
-  project
-    .in(file("xgboost/jvm-packages/xgboost4j-example"))
-    .dependsOn(`xgboost4j-flink`, `xgboost4j-spark`)
-    .settings(settings ++ notToPublish)
-    .settings(
-      fork in run := true
-    )
-    .settings(
-      libraryDependencies ++= Seq(
-        "org.apache.spark" %% "spark-mllib" % sparkVersion % Provided
-      )
-    )
-
-lazy val `xgboost4j-flink` =
-  project
-    .in(file("xgboost/jvm-packages/xgboost4j-flink"))
-    .dependsOn(xgboost4j % "compile;test->test")
-    .settings(settings ++ toPublish)
-    .settings(
-      libraryDependencies ++= Seq(
-        "org.apache.commons" %  "commons-lang3" % "3.4",
-        "org.apache.flink"   %% "flink-clients" % "0.10.2",
-        "org.apache.flink"   %% "flink-ml"      % "0.10.2",
-        "org.apache.flink"   %% "flink-scala"   % "0.10.2"
-      )
-    )
-
-lazy val `xgboost4j-spark` =
-  project
-    .in(file("xgboost/jvm-packages/xgboost4j-spark"))
-    .dependsOn(xgboost4j % "compile;test->test")
-    .settings(settings ++ toPublish)
-    .settings(
-      parallelExecution in Test := false
-    )
-    .settings(
-      libraryDependencies ++= Seq(
-        "org.apache.spark" %% "spark-core"  % sparkVersion % Provided,
-        "org.apache.spark" %% "spark-mllib" % sparkVersion % Provided,
-        "org.apache.spark" %% "spark-sql"   % sparkVersion % Provided
       )
     )
 
